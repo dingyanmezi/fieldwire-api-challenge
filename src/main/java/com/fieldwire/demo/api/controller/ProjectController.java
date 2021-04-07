@@ -39,7 +39,6 @@ public class ProjectController {
     }
 
     @DeleteMapping(value="/projects/{id}")
-
     public ResponseEntity<String> deleteProject(@PathVariable("id") String id){
         projectRepository.deleteByPid(Integer.parseInt(id));
         return new ResponseEntity<>("success", HttpStatus.OK);

@@ -1,0 +1,120 @@
+# API - Projects
+
+**Note**: This API is used once, on startup, by each storage server.
+
+Naming Server Host Name: localhost  
+Naming Server Registration Port: 8090  
+In all cases, if the API call receives invalid data (there is error when parse the request), always return `400 Bad Request`.
+
+------
+
+## GetProjects
+
+### request
+
+**URL** : `/projects`
+
+**Method** : `GET`
+
+**Input Data** :
+
+```json
+{
+    
+}
+```
+
+### response_1
+
+**Code** : `200 OK`
+
+**Content** :
+
+```json
+{
+    "files": [
+        "/storage/dir1/dir2/fileC",
+        "/file"
+    ]
+}
+```
+
+*files*: return a list of duplicate files to delete on the local storage of the registering storage server.  
+(Please refer to the corresponding java class jsonhelper/FilesReturn.java)
+
+### response_2
+
+**Code** : `409 Conflict`
+
+**Content** :
+
+```json
+{
+    "exception_type": "IllegalStateException",
+    "exception_info": "This storage client already registered."
+}
+```
+
+*exception_type*:
+
+1. IllegalStateException. If the path is invalid.
+
+*exception_info*: for your own debug purpose.  
+(Please refer to the corresponding java class jsonhelper/ExceptionReturn.java)
+
+
+## PostProjects
+
+### request
+
+**URL** : `/projects`
+
+**Method** : `POST`
+
+**Input Data** :
+
+```json
+{
+    "name":"project 1"
+}
+```
+
+### response_1
+
+**Code** : `200 OK`
+
+**Content** :
+
+```json
+{
+    
+}
+```
+
+## DeleteProjects
+
+### request
+
+**URL** : `/projects/1`
+
+**Method** : `DELETE`
+
+**Input Data** :
+
+```json
+{
+    "name":"project 1"
+}
+```
+
+### response_1
+
+**Code** : `200 OK`
+
+**Content** :
+
+```json
+{
+    
+}
+```
